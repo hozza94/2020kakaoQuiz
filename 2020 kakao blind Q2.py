@@ -33,9 +33,9 @@
 #####
 
 ##### 사용예정인 변수
-# '(' 괄호의 갯수를 셀 - (int) left
-# ')' 괄호의 갯수를 셀 - (right) right
-# 올바른 괄호 문자열인지 판단하기위한 변수 - (int) correct
+# 균형잡힌 괄호 문자열인지 판단하기위한 변수 - (int) correct // "(" = +1 , ")" = -1 함
+# 올바른 괄호 문자열이라면, corr값이 중간에 음수가 되지 않음. 마지막 괄호가 항상 ")"이기 때문
+# 아직 u 문자열에 문자를 넣고있는것을 확인하기 위한 변수 - (bool) uing
 ##### 
 
 
@@ -45,16 +45,56 @@
 
 def solution(p):
     answer = ''
-
+    u = ""
+    v = ""
+    corr = 0
+    uing = True
+    
     # 빈문자열인 경우 빈 문자열 return
     if p == "":
         return answer
+    elif:
+        if check_corr(p):
+            return p
     else:
-        #for s in p:
+        for s in p:
+            if s == "(" :
+                corr += 1
+            else :
+                corr -= 1
+
+            if uing :
+                u += s
+            else :
+                v += s
+                
+            if corr == 0:
+                uing = False
+        # for loop end
+
+        # 4번 조건 문항
+        if check_corr(u):
+            answer = u + solution(v)
+        else:
+            answer = "(" + solution(v) + ")" + reverse(u)
             
-    print (reverse(p))
     return answer
 
+# 괄호 문자열 w에 대해서 올바른 괄호 문자열인지 체크
+#  균형잡힌  문자열이라면 모든 괄호를 체크한 후에 결과값이 0
+def check_corr(w):
+    corr = 0
+
+    for n in w:
+        if n == "(" :
+            corr += 1
+        else :
+            corr -= 1
+        if corr < 0 :
+            return False
+    # for loop end
+    return True
+            
 # 4-4 첫번째, 마지막 문자를 제거, 나머지 문자열 괄호방향 뒤집기
 def reverse(u):
     reverse = ""
