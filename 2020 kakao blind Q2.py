@@ -35,7 +35,7 @@
 ##### 사용예정인 변수
 # '(' 괄호의 갯수를 셀 - (int) left
 # ')' 괄호의 갯수를 셀 - (right) right
-
+# 올바른 괄호 문자열인지 판단하기위한 변수 - (int) correct
 ##### 
 
 
@@ -50,10 +50,23 @@ def solution(p):
     if p == "":
         return answer
     else:
-        for s in p:
+        #for s in p:
             
-    
+    print (reverse(p))
     return answer
+
+# 4-4 첫번째, 마지막 문자를 제거, 나머지 문자열 괄호방향 뒤집기
+def reverse(u):
+    reverse = ""
+    for ch in range(len(u)):
+        if (ch == 0 or ch == (len(u)-1)) :
+            continue
+        elif u[ch] == "(" :
+            reverse += ")"
+        else:
+            reverse += "("
+    # for loop end
+    return reverse
 
 w = input("괄호 문자열 입력(균형잡힌 괄호문자열로 입력!): ")
 print(solution(w))
