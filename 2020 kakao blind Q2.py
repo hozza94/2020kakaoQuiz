@@ -39,10 +39,6 @@
 ##### 
 
 
-##### 고려사항
-# u
-#####
-
 def solution(p):
     answer = ''
     u = ""
@@ -53,30 +49,31 @@ def solution(p):
     # 빈문자열인 경우 빈 문자열 return
     if p == "":
         return answer
-    elif:
+    # 이미 올바른 문자열인 경우 바로 return
+    else:
         if check_corr(p):
             return p
-    else:
-        for s in p:
-            if s == "(" :
-                corr += 1
-            else :
-                corr -= 1
+        
+    for s in p:
+        if s == "(" :
+            corr += 1
+        else :
+            corr -= 1
 
-            if uing :
-                u += s
-            else :
-                v += s
+        if uing :
+            u += s
+        else :
+            v += s
                 
-            if corr == 0:
-                uing = False
-        # for loop end
+        if corr == 0:
+            uing = False
+    # for loop end
 
-        # 4번 조건 문항
-        if check_corr(u):
-            answer = u + solution(v)
-        else:
-            answer = "(" + solution(v) + ")" + reverse(u)
+    # 4번 조건 문항
+    if check_corr(u):
+        answer = u + solution(v)
+    else:
+        answer = "(" + solution(v) + ")" + reverse(u)
             
     return answer
 
