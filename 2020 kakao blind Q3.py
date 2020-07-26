@@ -46,6 +46,9 @@ def movedown(key):
 
 def moveright(key):
 
+# for cc in key
+# for n in range (1,nkey)
+# 
 def moveleft(key):
 
     
