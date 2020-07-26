@@ -20,13 +20,35 @@
 
 ##### 
 
+'''
+>>> b = [[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1,]]
+n b : print(cc)
+
+[1, 1, 1, 1]
+[1, 1, 1, 1]
+[1, 1, 1, 1]
+[1, 1, 1, 1]
+>>> for cc in b:
+	for dd in cc:
+		print (dd)
+'''
 
 def solution(key, lock):
     answer = True
     return answer
 
 
-def spin90(time):
+def moveup(key):
+    nkey = len(key)
     
-w = input("괄호 문자열 입력(균형잡힌 괄호문자열로 입력!): ")
+
+def movedown(key):
+
+def moveright(key):
+
+def moveleft(key):
+
+    
+    
+w = input("key, lock 을 입력해주세요...?")
 print(solution(w))
