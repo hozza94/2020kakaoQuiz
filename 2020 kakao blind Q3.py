@@ -50,7 +50,16 @@ def moveright(key):
 # for n in range (1,nkey)
 # 
 def moveleft(key):
-
+    nkey = len(key)
+    
+    for row in key:
+        for n in range(0,nkey):
+            if n == nkey:
+                row[n] = 0
+            row[n] = row[n+1]
+        # for loop end
+    # for loop end
+    
     
     
 w = input("key, lock 을 입력해주세요...?")
