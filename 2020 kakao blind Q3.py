@@ -6,7 +6,7 @@
 
 ##### 고려해야할 문제
 # 회전 90, 180, 270도
-# 이동 상하좌우 1칸씩
+# 윈도우 슬라이딩...
 
 #####
 
@@ -38,29 +38,6 @@ def solution(key, lock):
     return answer
 
 
-def moveup(key):
-    nkey = len(key)
-    
-
-def movedown(key):
-
-def moveright(key):
-
-# for cc in key
-# for n in range (1,nkey)
-# 
-def moveleft(key):
-    nkey = len(key)
-    
-    for row in key:
-        for n in range(0,nkey):
-            if n == nkey:
-                row[n] = 0
-            row[n] = row[n+1]
-        # for loop end
-    # for loop end
-    
-    
-    
-w = input("key, lock 을 입력해주세요...?")
-print(solution(w))
+key = [[0, 0, 0], [1, 0, 0], [0, 1, 1]]
+lock =  [[1, 1, 1], [1, 1, 0], [1, 0, 1]]
+print(solution(key,lock))
