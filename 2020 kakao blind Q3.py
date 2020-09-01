@@ -21,23 +21,43 @@
 ##### 
 
 '''
->>> b = [[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1,]]
+b = [[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1,]]
 n b : print(cc)
 
 [1, 1, 1, 1]
 [1, 1, 1, 1]
 [1, 1, 1, 1]
 [1, 1, 1, 1]
->>> for cc in b:
+for cc in b:
 	for dd in cc:
 		print (dd)
 '''
 
 def solution(key, lock):
+    lkey = len(key)
+    llock = len(lock)
+    keylist = spinList(key)
+    
     answer = True
     return answer
 
+def spinList (key):
+    keylist = []
+    lkey = len(key)
+    slist = key
 
+    # 정상, 90, 180, 270 4방향
+    keylist.append(key)
+    for m in range(3):
+        temp = [[0 for col in range(lkey)] for row in range(lkey)]
+        for i in range(lkey):
+            for j in range(lkey):
+                temp[j][lkey-1-i] = slist[i][j]
+        keylist.append(temp)
+        slist = temp
+    return keylist
+
+    
 key = [[0, 0, 0], [1, 0, 0], [0, 1, 1]]
 lock =  [[1, 1, 1], [1, 1, 0], [1, 0, 1]]
 print(solution(key,lock))
