@@ -27,14 +27,30 @@
 
 ##### 요구사항
 # 키워드별로 매치된 단어가 몇개인지 "순서대로" 배열에 담아 반환
-## 효율성 개선에 관한 고민 필요..
+## 효율성 개선에 관한 고민 필요.. -> trie(트라이 구조)
 #####
 
 ##### 사용예정인 함수
 # checkmatch
-
-
 #####
+
+class Node():
+    def __init__(self, key):
+        self.key = key
+        self.remain_length = {}
+        self.children = {}
+
+class Trie():
+    def __init__(self):
+        self.head = Node()
+
+    def insert(self, string):
+        curr_node = self.head
+
+        remain_length = len(string)
+
+
+
 
 
 def solution(words, queries):
