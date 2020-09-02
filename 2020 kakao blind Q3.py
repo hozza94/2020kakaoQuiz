@@ -15,8 +15,9 @@
 #####
 
 ##### 사용예정인 함수
-# spin90 (횟수) x 123..
-# move up down left right
+# spin key list
+# wibdow padd
+# checklock
 
 ##### 
 
