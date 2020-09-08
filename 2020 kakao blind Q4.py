@@ -25,6 +25,11 @@
 
 #####
 
+##### 참고
+# https://www.youtube.com/watch?v=yip5IObfAjI
+# 주렁코드
+#####
+
 ##### 요구사항
 # 키워드별로 매치된 단어가 몇개인지 "순서대로" 배열에 담아 반환
 ## 효율성 개선에 관한 고민 필요.. -> trie(트라이 구조)
@@ -36,23 +41,81 @@
 
 class Node():
     def __init__(self, key):
-        self.key = key
-        self.remain_length = {}
-        self.children = {}
+        self.key = key  ## 시작값
+        self.remain_length = {}  ## Terminal까지 남아있는 문자열의 길이
+        self.children = {}  ## 자식노드
+
 
 class Trie():
     def __init__(self):
-        self.head = Node()
+        self.head = Node(None)
 
     def insert(self, string):
         curr_node = self.head
 
+        # 처음 들어오는 글자의 길이
         remain_length = len(string)
 
+        if remain_length in curr_node.remain_length:
+            curr_node.remain_length[remain_length] += 1
+        else:
+            curr_node.remain_length[remain_length] = 1
+
+        for char in string:
+            if char not in curr_node.children:
+                curr_node.children[char] = Node(char)
+
+            curr_node = curr_node.children[char]
+            remain_length -= 1
+            if remain_length in curr_node.remain_length:
+                curr_node.remain_length[remain_length] += 1
+            else:
+                curr_node.remain_length[remain_length] = 1
+
+    def search_count(self, string, check_length):
+        curr_node = self.head
+        # 찾아야할 "?"를 포함한 string의 길이가 없다면 return 0
+        if check_length + len(string) not in curr_node.remain_length:
+            return 0
+
+        for char in string:
+            ## 찾아야할 string이 없다면 return 0
+            if char in curr_node.children:
+                curr_node = curr_node.children[char]
+            else:
+                return 0
+
+        ## string 은 존재하는데 check_length가 remain_length에 존재하는지 확인
+        if check_length in curr_node.remain_length:
+            return curr_node.remain_length[check_length]
+        else:
+            return 0
 
 
+def solution(words, queries):
+    t = Trie()
+    inv_t = Trie()
+    for word in words:
+        t.insert(word)
+        inv_t.insert(word[-1::-1])
+
+    answer = []
+    for i in range(len(queries)):
+        query = queries[i]
+        if query[0] == "?":
+            query = query[-1::-1]
+            chars = query.replace("?", "")
+            check_length = len(query) - len(chars)
+            answer.append(inv_t.search_count(chars, check_length))
+        else:
+            chars = query.replace("?", "")
+            check_length = len(query) - len(chars)
+            answer.append(t.search_count(chars, check_length))
+
+    return answer
 
 
+''' # 효율성.. ---
 def solution(words, queries):
     answer = []
 
@@ -80,7 +143,7 @@ def checkmatch(word, query):
     else:
         check = False
     return check
-
+'''
 
 words = ["frodo", "front", "frost", "frozen", "frame", "kakao"]
 queries = ["fro??", "????o", "fr???", "fro???", "pro?"]
